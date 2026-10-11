@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html><head><title>Oxford ERP</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head><body class="p-4">
+<div class="container">
+<h3 class="text-primary">OXFORD MODERN SCHOOL</h3>
+<div class="row">
+<div class="col-md-5 card p-3 m-2">
+<h5>Add Student</h5>
+<form method="post" action="/add_student">
+<input name="adm_no" placeholder="ADM No" class="form-control mb-2" required>
+<input name="name" placeholder="Name" class="form-control mb-2" required>
+<button class="btn btn-primary btn-sm w-100">Add</button>
+</form>
+<hr>
+{% for s in students %}
+<p>{{s.adm_no}} - {{s.name}}</p>
+{% endfor %}
+</div>
+<div class="col-md-6 card p-3 m-2">
+<h5>Add Stock (Pen, Rubber, Duster, Sweater)</h5>
+<form method="post" action="/add_stock">
+<input name="code" placeholder="Code" class="form-control mb-2" required>
+<input name="name" placeholder="Name" class="form-control mb-2" required>
+<select name="category" class="form-control mb-2">
+<option>Pen</option><option>Rubber</option><option>Duster</option>
+<option>Sweater</option><option>Uniform</option><option>Books</option>
+</select>
+<input name="qty" type="number" placeholder="Qty" class="form-control mb-2" required>
+<input name="price" type="number" placeholder="Price" class="form-control mb-2" required>
+<button class="btn btn-success btn-sm w-100">Add Stock</button>
+</form>
+<hr>
+{% for i in items %}
+<small>{{i.item_code}} - {{i.name}} - {{i.qty}} left</small><br>
+{% endfor %}
+</div></div>
+<div class="card p-3 mt-3">
+<h5>Sell</h5>
+<form method="post" action="/sell" class="row">
+<div class="col-4"><select name="student_id" class="form-control">
+{% for s in students %}<option value="{{s.id}}">{{s.name}}</option>{% endfor %}
+</select></div>
+<div class="col-4"><select name="item_id" class="form-control">
+{% for i in items %}<option value="{{i.id}}">{{i.name}}</option>{% endfor %}
+</select></div>
+<div class="col-2"><input name="qty" type="number" value="1" class="form-control"></div>
+<div class="col-2"><button class="btn btn-warning">Sell</button></div>
+</form>
+</div>
+<div class="card p-3 mt-2">Total Money: <b>{{total}} UGX</b></div>
+</div></body></html>
