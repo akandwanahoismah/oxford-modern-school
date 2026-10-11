@@ -1,9 +1,0 @@
-Desktop/Oxford_ERP/
-   app.py
-   requirements.txt
-   templates/
-      index.htmlDesktop/Oxford_ERP/
-   app.py
-   requirements.txt
-   templates/
-      index.html
